@@ -21,6 +21,25 @@ public class BalancedTree_0110 {
         }
     }
 
+    class mySolution {
+        int recursion(TreeNode node) {
+            if (node == null) {
+                return 0;
+            }
+            int leftHeight = recursion(node.left);
+            // jian'zhijianzhi
+            int rightHeight = recursion(node.right);
+            if (Math.abs(leftHeight - rightHeight) > 1) {
+                return -1000;
+            }
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+
+        public boolean isBalanced(TreeNode root) {
+            return recursion(root) >= 0;
+        }
+    }
+
     static class Solution {
         public boolean isBalanced(TreeNode root) {
             // 如果高度返回的不是 -1，说明整棵树是平衡的
