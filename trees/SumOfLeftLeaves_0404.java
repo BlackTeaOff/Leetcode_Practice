@@ -20,6 +20,27 @@ public class SumOfLeftLeaves_0404 {
         }
     }
 
+    class mySolution {
+        int recursion(TreeNode node, boolean isLeftNode) {
+            if (node == null) {
+                return 0;
+            }
+            if (node.left == null && node.right == null) {
+                if (isLeftNode) {
+                    return node.val;
+                } else {
+                    return 0;
+                }
+            }
+            // 不是叶子节点就遍历左右
+            return recursion(node.left, true) + recursion(node.right, false);
+        }
+
+        public int sumOfLeftLeaves(TreeNode root) {
+            return recursion(root, false);
+        }
+    }
+
     static class Solution {
         public int sumOfLeftLeaves(TreeNode root) {
             if (root == null) {
