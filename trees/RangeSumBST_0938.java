@@ -20,6 +20,22 @@ public class RangeSumBST_0938 {
         }
     }
 
+    static class MySolution {
+        public int RangeSumBST(TreeNode root, int low, int high) {
+            if (root == null) {
+                return 0;
+            }
+            if (root.val >= low && root.val <= high) {
+                return RangeSumBST(root.left, low, high) + RangeSumBST(root.right, low, high) + root.val;
+            }
+            if (root.val < low) {
+                return RangeSumBST(root.right, low, high);
+            } else {
+                return RangeSumBST(root.left, low, high);
+            }
+        }
+    }
+
     static class Solution {
         public int rangeSumBST(TreeNode root, int low, int high) {
             if (root == null) {
