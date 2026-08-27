@@ -20,6 +20,28 @@ public class GetMinimumDifference_0530 {
         }
     }
 
+    static class MySolution {
+        TreeNode lastTree = null;
+        int min = Integer.MAX_VALUE;
+
+        public void recursion(TreeNode root) {
+            if (root == null) {
+                return;
+            }
+            recursion(root.left);
+            if (lastTree != null) {
+                min = min < root.val - lastTree.val ? min : root.val - lastTree.val;
+            }
+            lastTree = root;
+            recursion(root.right);
+        }
+
+        public int getMinimumDifference(TreeNode root) {
+            recursion(root);
+            return min;
+        }
+    }
+
     static class Solution {
         private int minDiff = Integer.MAX_VALUE;
         private TreeNode prev = null;
