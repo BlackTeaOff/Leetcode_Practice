@@ -20,6 +20,28 @@ public class InsertIntoBST_0701 {
         }
     }
 
+    static class MySolution {
+        public TreeNode insertIntoBST(TreeNode root, int val) {
+            if (root == null) {
+                return new TreeNode(val);
+            }
+            if (root.val > val) {
+                if (root.left == null) {
+                    root.left = new TreeNode(val);
+                    return root;
+                }
+                insertIntoBST(root.left, val);
+            } else {
+                if (root.right == null) {
+                    root.right = new TreeNode(val);
+                    return root;
+                }
+                insertIntoBST(root.right, val);
+            }
+            return root;
+        }
+    }
+
     static class Solution {
         public TreeNode insertIntoBST(TreeNode root, int val) {
             if (root == null) {
