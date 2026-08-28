@@ -24,6 +24,35 @@ public class AverageOfLevels_0637 {
             this.right = right;
         }
     }
+    
+    class MySolution {
+        public List<Double> averageOfLevels(TreeNode root) {
+            Queue<TreeNode> queue = new ArrayDeque<>();
+            List<Double> result = new ArrayList<>();
+            if (root == null) {
+                return null;
+            }
+            queue.add(root);
+            long sum = 0;
+            int num;
+            while (!queue.isEmpty()) {
+                num = queue.size();
+                for (int i = 0; i < num; i++) {
+                    TreeNode temp = queue.poll();
+                    sum += temp.val;
+                    if (temp.left != null) {
+                        queue.add(temp.left);
+                    }
+                    if (temp.right != null) {
+                        queue.add(temp.right);
+                    }
+                }
+                result.add((double)sum / num);
+                sum = 0;
+            }
+            return result;
+        }
+    }
 
     static class Solution {
         public List<Double> averageOfLevels(TreeNode root) {
@@ -32,7 +61,6 @@ public class AverageOfLevels_0637 {
                 return result;
             }
 
-            // 利用队列（Queue）进行层序遍历（BFS）
             Queue<TreeNode> queue = new ArrayDeque<>();
             queue.offer(root);
 
